@@ -399,5 +399,9 @@ span.action {
 
 .filetree {
   font-size: 12px;
-
+  border: solid 5px #eae7d6;
+  padding: 15px;
+  display: inline-block;
+  color: #000029;
+  font-style: italic;
 }
