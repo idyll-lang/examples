@@ -349,6 +349,7 @@ tspan {
 .idyll-dynamic {
   border-bottom: dashed 2px blue;
   cursor: ew-resize;
+  margin: 10px;
 }
 
 
