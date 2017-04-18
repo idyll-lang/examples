@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+      <title>
+        Idyll CSV Data
+      </title>
+      <meta property="og:title" content="Idyll CSV Data">
+    <meta charset="utf-8">
+    <meta property="og:type" content="article">
+
+      <meta property="og:description" content="This is how to read data from a CSV file using Idyll">
+      <meta property="description" content="This is how to read data from a CSV file using Idyll">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div id="idyll-mount">
+      <div class="idyll-root" data-reactroot="" data-reactid="1" data-react-checksum="-1057337971"><meta title="Idyll CSV Data" data-reactid="2"/><div class="idylllogo" data-reactid="3"></div><header title="Reading from a CSV In Idyll" data-reactid="4"></header><p data-reactid="5"><!-- react-text: 6 -->I recently added support for loading datasets directly from <!-- /react-text --><code data-reactid="7"><!-- react-text: 8 -->.csv<!-- /react-text --></code><!-- react-text: 9 -->
+files, eliminating the need to convert them to json by hand.<!-- /react-text --></p><p data-reactid="10"><!-- react-text: 11 -->For example, say I have a file named <!-- /react-text --><code data-reactid="12"><!-- react-text: 13 -->lake-huron.csv<!-- /react-text --></code><!-- react-text: 14 --> that
+contained rows of data about the water level in Lake Huron over time.<!-- /react-text --></p><table data-reactid="15"></table><em data-reactid="16"><!-- react-text: 17 -->dataset taken from https://vincentarelbundock.github.io/Rdatasets/datasets.html<!-- /react-text --></em><p data-reactid="18"><!-- react-text: 19 -->To load a CSV file in Idyll, simply include a data component and point the
+source to a <!-- /react-text --><code data-reactid="20"><!-- react-text: 21 -->.csv<!-- /react-text --></code><!-- react-text: 22 --> file.<!-- /react-text --></p><pre data-reactid="23"><code data-reactid="24"><!-- react-text: 25 -->[data name:&quot;lakeHuron&quot; source:&quot;lake-huron.csv&quot; /]<!-- /react-text --></code></pre><p data-reactid="26"><!-- react-text: 27 -->This automatic CSV importing pairs nicely with the Vega Lite component:<!-- /react-text --></p><div class="vegalite" data-reactid="28"></div><pre data-reactid="29"><code data-reactid="30"><!-- react-text: 31 -->[VegaLite data:lakeHuron spec:`{
+  mark: &quot;line&quot;,
+  encoding: {
+    x: {
+      field: &quot;time&quot;,
+      type: &quot;temporal&quot;,
+      axis: {title: &quot;Year&quot;, format:&quot;%Y&quot;}
+    },
+    y: {
+      field: &quot;LakeHuron&quot;,
+      type: &quot;quantitative&quot;,
+      axis: {title: &quot;Water level&quot;}
+    }
+  }
+}` /]<!-- /react-text --></code></pre><p data-reactid="32"><!-- react-text: 33 -->Since the specifications passed in to the vega lite component are
+just JavaScript objects, they can be parameterized by Idyll&#x27;s reactive
+variables.<!-- /react-text --></p><p data-reactid="34"><!-- react-text: 35 -->Here I set up variables to control the starting point of the y-axis and
+the color of the line:<!-- /react-text --></p><pre data-reactid="36"><code data-reactid="37"><!-- react-text: 38 -->[var name:&quot;yStart&quot; value:0 /]
+[var name:&quot;color&quot; vale:&quot;blue&quot; /]<!-- /react-text --></code></pre><div data-reactid="39"></div><div class="vegalite" data-reactid="40"></div><div class="range" min="0" max="575" value="0" data-reactid="41"></div><p data-reactid="42"><!-- react-text: 43 -->Move the range slider to change the starting value of the <!-- /react-text --><em data-reactid="44"><!-- react-text: 45 -->y-axis<!-- /react-text --></em><!-- react-text: 46 -->,
+currently set to <!-- /react-text --><div class="displayvar" data-reactid="47"></div><!-- react-text: 48 -->.<!-- /react-text --></p><p data-reactid="49"><!-- react-text: 50 -->Click on a color to change the color of the line:<!-- /react-text --><div class="action" style="color:red;" data-reactid="51"><!-- react-text: 52 -->red<!-- /react-text --></div><div class="action" style="color:green;" data-reactid="53"><!-- react-text: 54 -->green<!-- /react-text --></div><div class="action" style="color:blue;" data-reactid="55"><!-- react-text: 56 -->blue<!-- /react-text --></div><!-- react-text: 57 -->.<!-- /react-text --></p><pre data-reactid="58"><code data-reactid="59"><!-- react-text: 60 -->[VegaLite data:lakeHuron spec:`{
+  mark: &quot;line&quot;,
+  encoding: {
+    x: {
+      field: &quot;time&quot;,
+      type: &quot;temporal&quot;,
+      axis: {title: &quot;Year&quot;, format:&quot;%Y&quot;}
+    },
+    y: {
+      field: &quot;LakeHuron&quot;,
+      type: &quot;quantitative&quot;,
+      axis: {title: &quot;Water level&quot;},
+      scale: { domain: [yStart, 582] }
+    }
+  },
+  config: {
+    mark: {
+      color: color
+    }
+  }
+}` /]<!-- /react-text --></code></pre></div>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>
