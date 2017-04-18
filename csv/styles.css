@@ -337,6 +337,7 @@ body {
 
 table {
   margin: 0;
+  text-align: right;
   margin-top: 30px;
   padding: 0;
   border-collapse: collapse;
@@ -385,4 +386,14 @@ span.action {
 .idyll-dynamic {
   border-bottom: dashed 2px blue;
   cursor: ew-resize;
+}
+
+
+thead {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: bold;
+  padding: 10px;
+  color: black;
+  border-bottom: solid 2px black;
+  vertical-align: bottom;
 }
