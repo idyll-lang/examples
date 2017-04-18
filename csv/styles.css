@@ -392,3 +392,6 @@ span.action {
   cursor: pointer;
 }
 
+.inset {
+  text-align: center;
+}
