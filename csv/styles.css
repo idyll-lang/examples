@@ -380,3 +380,9 @@ span.action {
   border: none;
   cursor: pointer;
 }
+
+
+.idyll-dynamic {
+  border-bottom: dashed 2px blue;
+  cursor: ew-resize;
+}
