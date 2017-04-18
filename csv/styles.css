@@ -302,37 +302,8 @@ span.action {
   border-width: 2px;
   border-style: none none solid none;
   color: #5601FF;
-  /*font-size: 0.9em;*/
-  padding: -4px 5px;
-  margin: 0 5px;
   cursor: pointer;
 }
-
-@media all and (max-width: 700px) {
-  .logo-lockup {
-    display: none;
-  }
-}
-
-
-@import url('https://fonts.googleapis.com/css?family=Archivo+Black|Fira+Mono:400,500,700|Source+Sans+Pro:300,300i,400,400i,600,600i,700,700i');
-
-body {
-  font-family: 'Source Sans Pro', sans-serif;
-}
-
-.hed {
-  font-family: 'Archivo Black', sans-serif;
-}
-
-.byline {
-  font-family: 'Fira Mono', monospace;
-}
-
-.vega {
-  text-align: center;
-}
-
 
 
 table {
@@ -375,13 +346,6 @@ tspan {
   font-size: 12px;
 }
 
-
-span.action {
-  border: none;
-  cursor: pointer;
-}
-
-
 .idyll-dynamic {
   border-bottom: dashed 2px blue;
   cursor: ew-resize;
@@ -396,3 +360,35 @@ thead {
   border-bottom: solid 2px black;
   vertical-align: bottom;
 }
+
+
+@media all and (max-width: 700px) {
+  .logo-lockup {
+    display: none;
+  }
+}
+
+
+@import url('https://fonts.googleapis.com/css?family=Archivo+Black|Fira+Mono:400,500,700|Source+Sans+Pro:300,300i,400,400i,600,600i,700,700i');
+
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.hed {
+  font-family: 'Archivo Black', sans-serif;
+}
+
+.byline {
+  font-family: 'Fira Mono', monospace;
+}
+
+.vega {
+  text-align: center;
+}
+
+span.action {
+  border: none;
+  cursor: pointer;
+}
+
