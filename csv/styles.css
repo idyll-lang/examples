@@ -303,6 +303,7 @@ span.action {
   border-style: none none solid none;
   color: #5601FF;
   cursor: pointer;
+  margin: 10px;
 }
 
 
@@ -349,7 +350,6 @@ tspan {
 .idyll-dynamic {
   border-bottom: dashed 2px blue;
   cursor: ew-resize;
-  margin: 10px;
 }
 
 
