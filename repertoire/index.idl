@@ -1,0 +1,60 @@
+[Header
+  title:"Idyll Repertoire"
+  author:"Ricky Reusser"
+  authorLink:"https://github.com/idyll-lang/examples"
+/]
+
+# Header
+## Header 2
+### Header 3
+#### Header 4
+##### Header 5
+###### Header 6
+
+[This is a link](http://example.com)
+
+[span] (this is not)[/span] a link.
+
+[Link href:"http://example.com"]This is also a link[/Link]
+
+Links also word in strictly [Link href:"http://example.com" text:"component style"/]
+
+You can write *italicized* text with with asterisks or _underscores_.
+
+You can also write **strong** text.
+
+Is this ***both*** italicized and strong?
+
+Lists work like this:
+
+- item 1
+- item 2
+- item 3
+
+or in component style:
+
+[ul]
+  [li]item 1[/li]
+  [li]item 2[/li]
+  [li]item 3[/li]
+[/ul]
+
+or as numbered lists:
+
+1. item
+2. item
+3. item
+
+You can [span]nest [span]components[/span][/span] on a single line or
+
+[div]
+  [div]
+    across lines
+  [/div]
+[/div]
+
+You can write inline code with `single ticks`, ``double ticks``, or ```triple ticks``` and of course
+
+```
+code(blocks);
+```

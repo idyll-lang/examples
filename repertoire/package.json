@@ -1,0 +1,13 @@
+{
+  "name": "repertoire",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "idyll index.idl",
+    "start": "idyll -w index.idl"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
