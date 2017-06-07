@@ -19,7 +19,7 @@ var colorScale = d3.scaleThreshold().domain([0.02, 0.04, 0.06, 0.08, 0.10]).rang
 
 var roundPath = function roundPath(p) {
   if (!p) return p;
-  var f = d3.format(".3f");
+  var f = d3.format(".2f");
   var s = parse(p);
   return s.map(function (command) {
     return command.map(function (d, i) {
@@ -33,19 +33,51 @@ var roundPath = function roundPath(p) {
 
 // Combine array of colors and quantize scale to pick fill colo
 // Return a <path> element
-var County = function County(_ref) {
-  var data = _ref.data,
-      geoPath = _ref.geoPath,
-      feature = _ref.feature;
 
-  var color = '#000';
+var County = function (_React$Component) {
+  _inherits(County, _React$Component);
 
-  if (data) {
-    color = colorScale(data);
+  function County(props) {
+    _classCallCheck(this, County);
+
+    var _this = _possibleConstructorReturn(this, (County.__proto__ || Object.getPrototypeOf(County)).call(this, props));
+
+    _this.state = {
+      mouseover: false
+    };
+    return _this;
   }
 
-  return React.createElement('path', { d: roundPath(geoPath(feature)), style: { fill: color }, title: feature.id });
-};
+  _createClass(County, [{
+    key: 'handleMouseEnter',
+    value: function handleMouseEnter() {
+      this.setState({ mouseover: true });
+    }
+  }, {
+    key: 'handleMouseLeave',
+    value: function handleMouseLeave() {
+      this.setState({ mouseover: false });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          data = _props.data,
+          geoPath = _props.geoPath,
+          feature = _props.feature;
+
+      var color = '#000';
+
+      if (data && !this.state.mouseover) {
+        color = colorScale(data);
+      }
+
+      return React.createElement('path', { onMouseOver: this.handleMouseEnter.bind(this), onMouseLeave: this.handleMouseLeave.bind(this), d: roundPath(geoPath(feature)), style: { fill: this.state.mouseover ? 'red' : color }, title: feature.id });
+    }
+  }]);
+
+  return County;
+}(React.Component);
 
 var CountyMap = function (_IdyllComponent) {
   _inherits(CountyMap, _IdyllComponent);
@@ -57,12 +89,12 @@ var CountyMap = function (_IdyllComponent) {
   function CountyMap(props) {
     _classCallCheck(this, CountyMap);
 
-    var _this = _possibleConstructorReturn(this, (CountyMap.__proto__ || Object.getPrototypeOf(CountyMap)).call(this, props));
+    var _this2 = _possibleConstructorReturn(this, (CountyMap.__proto__ || Object.getPrototypeOf(CountyMap)).call(this, props));
 
-    _this.projection = d3.geoAlbersUsa().scale(960);
-    console.log(_this.projection.precision());
-    _this.geoPath = d3.geoPath().projection(_this.projection);
-    return _this;
+    _this2.projection = d3.geoAlbersUsa().scale(960);
+    console.log(_this2.projection.precision());
+    _this2.geoPath = d3.geoPath().projection(_this2.projection);
+    return _this2;
   }
 
   _createClass(CountyMap, [{
@@ -89,7 +121,7 @@ var CountyMap = function (_IdyllComponent) {
   }, {
     key: 'render',
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
       // Translate topojson data into geojson data for drawing
       // Prepare a mesh for states and a list of features for counties
@@ -106,7 +138,7 @@ var CountyMap = function (_IdyllComponent) {
         'svg',
         { viewBox: '0 0 960 600' },
         counties.map(function (feature) {
-          return React.createElement(County, { geoPath: _this2.geoPath,
+          return React.createElement(County, { geoPath: _this3.geoPath,
             feature: feature,
             key: feature.id,
             data: dataLookup[feature.id] });
@@ -41112,7 +41144,7 @@ module.exports = function (component, datasets) {
 },{"../constants":"/Users/conlenm/projects/idyll-lang/idyll/src/client/constants.js","react-dom":"/Users/conlenm/projects/idyll-lang/idyll/node_modules/react-dom/index.js"}],"__IDYLL_AST__":[function(require,module,exports){
 "use strict";
 
-module.exports = [["Header", [["title", ["value", "Idyll Server Side Rendering"]], ["author", ["value", "Matthew Conlen"]], ["authorLink", ["value", "https://twitter.com/mathisonian"]]], []], ["p", [], ["A ", ["a", [["href", ["value", "https://github.com/idyll-lang/idyll/pull/75"]]], ["PR just landed in idyll"]], " to \nprovide out-of-the-box support for server side rendering. This was one \nof the last major issues preventing Idyll from really being production \nready in my opinion."]], ["p", [], ["As an example, the following map is rendered on the server, and then is \nhydrated on the client to provide some sample interactivity. "]], ["div", [], [["data", [["name", ["value", "us"]], ["source", ["value", "us.json"]]], []], ["data", [["name", ["value", "unemployment"]], ["source", ["value", "unemployment.csv"]]], []]]], ["choropleth", [["topodata", ["variable", "us"]], ["data", ["variable", "unemployment"]]], []], ["p", [], ["Thanks to ", ["a", [["href", ["value", "https://github.com/bclinkinbeard"]]], ["Ben Clinkinbeard"]], " and ", ["a", [["href", ["value", "https://github.com/rreusser"]]], ["Ricky Reusser"]], "\nfor there efforts on this feature."]]];
+module.exports = [["Header", [["title", ["value", "Idyll Server Side Rendering"]], ["author", ["value", "Matthew Conlen"]], ["authorLink", ["value", "https://twitter.com/mathisonian"]]], []], ["p", [], ["A ", ["a", [["href", ["value", "https://github.com/idyll-lang/idyll/pull/75"]]], ["PR just landed in idyll"]], " to \nprovide out-of-the-box support for server side rendering. This was one \nof the last major issues preventing Idyll from really being production \nready in my opinion."]], ["p", [], ["As an example, the following map is rendered on the server, and then is \nhydrated on the client to provide some sample interactivity. "]], ["div", [], [["data", [["name", ["value", "us"]], ["source", ["value", "us.json"]]], []], ["data", [["name", ["value", "unemployment"]], ["source", ["value", "unemployment.csv"]]], []]]], ["choropleth", [["topodata", ["variable", "us"]], ["data", ["variable", "unemployment"]]], []], ["p", [], ["Thanks to ", ["a", [["href", ["value", "https://github.com/bclinkinbeard"]]], ["Ben Clinkinbeard"]], " and ", ["a", [["href", ["value", "https://github.com/rreusser"]]], ["Ricky Reusser"]], "\nfor their efforts on this feature."]]];
 
 },{}],"__IDYLL_COMPONENTS__":[function(require,module,exports){
 'use strict';
