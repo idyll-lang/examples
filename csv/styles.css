@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css?family=Archivo+Black|Fira+Mono:400,500,700|Source+Sans+Pro:300,300i,400,400i,600,600i,700,700i');
+
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.hed {
+  font-family: 'Archivo Black', sans-serif;
+}
+
+.byline {
+  font-family: 'Fira Mono', monospace;
+}
+
+.vega {
+  text-align: center;
+}
+
+span.action {
+  border: none;
+  cursor: pointer;
+}
+
+.inset {
+  text-align: center;
+}
+
+.filetree {
+  font-size: 12px;
+  border: solid 5px #eae7d6;
+  padding: 15px;
+  display: inline-block;
+  color: #000029;
+  font-style: italic;
+}
+
+
+thead {
+  font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  padding: 10px;
+}
+
+table {
+margin: 0;
+padding: 0;
+border-collapse: collapse;
+border-spacing: 0;
+margin-bottom: 20px;
+width: 100%;
+text-align: left;
+}
+
+td {
+padding: 10px;
+font-size: 12px;
+}
+th {
+padding: 10px;
+font-size: 14px;
+}
+
+tr:nth-child(even) {
+background-color: #eee;
+}
+
+tr.selected {
+background-color: #ccc;
+}
+td.number {
+text-align: right;
+}
+
+tspan {
+font-family: Verdana;
+font-size: 11px;
+}

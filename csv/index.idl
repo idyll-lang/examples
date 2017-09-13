@@ -1,0 +1,137 @@
+
+[meta title:"Idyll CSV Data" description:"This is how to read data from a CSV file using Idyll" /]
+
+[IdyllLogo /]
+
+[Header
+  title:"Reading from a CSV In Idyll"
+  author:"Matthew Conlen"
+  authorLink:"https://idyll-lang.github.io" /]
+
+[data name:"lakeHuron" source:"lake-huron.csv" /]
+
+I recently added support for loading datasets directly from `.csv`
+files, eliminating the need to convert them to json by hand.
+
+[aside]
+[FileTree items:`[{
+  name: 'data',
+  children: [{name: 'lake-huron.csv'}]
+}, {
+  name: 'index.idl'
+}, {
+  name: 'styles.css'
+}, {
+  name: 'package.json'
+}]` /]
+[/aside]
+
+In my data folder I have a file named `lake-huron.csv`. It
+contains rows of data about the water level in Lake Huron over time.
+
+
+To load it, I just have to include a data component and point the
+source to a `.csv` file.
+
+```
+[data name:"lakeHuron" source:"lake-huron.csv" /]
+```
+
+I can quickly display it in a table.
+
+```
+[Table data:lakeHuron /]
+```
+
+[Table data:`lakeHuron.slice(0, 10).concat([{"": "...", time: "...", LakeHuron: "..."}, lakeHuron[lakeHuron.length - 1]])` /]
+
+[i]dataset taken from [a href:"https://vincentarelbundock.github.io/Rdatasets/datasets.html"]https://vincentarelbundock.github.io/Rdatasets/datasets.html[/a][/i]
+
+
+This automatic CSV importing pairs nicely with the Vega Lite component. To use it, first install it:
+
+```
+npm i --save idyll-vega-lite
+```
+
+
+[VegaLite data:lakeHuron spec:`{
+  mark: "line",
+  encoding: {
+    x: {
+      field: "time",
+      type: "temporal",
+      axis: {title: "Year", format:"%Y"}
+    },
+    y: {
+      field: "LakeHuron",
+      type: "quantitative",
+      axis: {title: "Water level"},
+      scale: { domain: [575, 582] }
+    }
+  }
+}` /]
+
+[gist gist:"8af1366ff341d3ed62e9dd58bd3a8849" file:"vl-1.idl" /]
+
+Since the specifications passed in to the vega lite component are
+just JavaScript objects, they can be parameterized by Idyll's reactive
+variables.
+
+Here I set up variables to control the starting point of the y-axis and
+the color of the line:
+
+```
+[var name:"yStart" value:0 /]
+[var name:"color" vale:"green" /]
+```
+
+[var name:"yStart" value:0 /]
+[var name:"color" value:"green" /]
+
+
+[VegaLite data:lakeHuron spec:`{
+  mark: "line",
+  encoding: {
+    x: {
+      field: "time",
+      type: "temporal",
+      axis: {title: "Year", format:"%Y"}
+    },
+    y: {
+      field: "LakeHuron",
+      type: "quantitative",
+      axis: {title: "Water level"},
+      scale: { domain: [yStart, 582] }
+    }
+  },
+  config: {
+    mark: {
+      color: color
+    }
+  }
+}` /]
+
+
+Try to make this chart look like the one above.
+
+
+[Inset]
+Y-axis: 0 [Range min:0 max:575 value:yStart /] 575
+[/Inset]
+
+You can
+move the range slider to change the starting value of the *y-axis*,
+currently set to [dynamic min:0 max:575 step:20 value:yStart /].
+
+Click on a color to change the color of the line:
+
+[inset][action style:`{color:'red'}` onClick:`color='red'`]red[/action] [action style:`{color:'green'}` onClick:`color='green'`]green[/action] [action style:`{color:'#4682b4'}` onClick:`color='#4682b4'`]blue[/action][/inset]
+
+
+[div style:`{opacity: (yStart===575 && color==='#4682b4') ? 1 : 0, margin: 10}`]
+[b]Good job :)[/b]
+[/div]
+
+[gist gist:"8af1366ff341d3ed62e9dd58bd3a8849" file:"vl-2.idl" /]
+

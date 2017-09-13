@@ -1,0 +1,17 @@
+{
+  "name": "csv",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "idyll index.idl --css styles.css --layout blog --watch",
+    "build": "idyll -n index.idl --layout blog --css styles.css; cp -r {.idyll/styles.css,images,fonts} ../build/csv;",
+    "deploy": "npm run build; cp build/index.html ../build/csv/; gh-pages -d ../build"
+  },
+  "dependencies": {
+    "idyll": "^1.12.0",
+    "idyll-vega-lite": "^1.0.1"
+  },
+  "devDependencies": {
+    "uglify-js": "^2.7.5",
+    "gh-pages": "^0.12.0"
+  }
+}
